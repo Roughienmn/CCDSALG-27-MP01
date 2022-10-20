@@ -1,4 +1,7 @@
+package org.example;
+
 import java.util.Scanner;
+import org.apache.commons.lang3.time.StopWatch;
 
 public class MCO1 {
 
@@ -17,15 +20,25 @@ public class MCO1 {
         // Deciding sorting algorithm to use:
         String sSort = getSorting();
 
+        StopWatch watch = new StopWatch();
+
         // Calling on the algorithm chosen:
-        if(sSort.equals("1"))
+        if(sSort.equals("1")) {
+            watch.start();
             insertionSort(arrSuffixes); // Insertion Sort
-        else
+            watch.stop();
+        }
+        else{
+            watch.start();
             mergeSort(arrSuffixes, 0, arrSuffixes.length-1); // Merge Sort
+            watch.stop();
+        }
 
         // Displaying the sorted suffix array:
         for(int i = 0; i < arrSuffixes.length; i++)
             System.out.println(arrSuffixes.length-arrSuffixes[i].length() + ": " + arrSuffixes[i]);
+
+        System.out.println("\ntime lapsed:" + watch.getNanoTime());
     }
 
     // Function that prompts the user to input the string:
