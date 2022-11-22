@@ -5,6 +5,15 @@ import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 
 public class MCO2 {
+    //Murmurhash
+    public static int hashFunction1(String substring){
+        HashFunction hf = Hashing.murmur3_128();
+        return hf.hashString(substring, StandardCharsets.UTF_8).hashCode();
+    }
+
+    public static int hashFunction2(String substring){
+        return Xxhash.hash32(substring.getBytes(), 0, substring.length(), 0);
+    }
     /* 
      * Notes:
      * Hash table class already exists in java;
@@ -28,7 +37,6 @@ public class MCO2 {
         int subcount = n - k + 1; //number of substrings of length k from string of length n
 
         Cell hashtable[] = new Cell[n]; //declare hash table
-        HashFunction hf = Hashing.murmur3_128();
 
         //add substrings to hash table, including counts
         for(int i = 0; i < subcount; i++){
@@ -43,7 +51,7 @@ public class MCO2 {
 
                 //get index of substring based on hashing function
                 int index;
-                index = (hf.hashString(subString, StandardCharsets.UTF_8).hashCode() + offset) % n; //insert hashing function here
+                index = (hashFunction2(subString) + offset) % n; //insert hashing function here
                 if(index < 0){ //if index is negative, set index as n - |index|
                     index = n+index;
                 }
@@ -61,7 +69,7 @@ public class MCO2 {
                     found = true;
                 }
 
-                //if neither, update case for hashing function
+                //if neither, update case for hashing function (linear probing)
                 else{
                     offset++;
                 }
