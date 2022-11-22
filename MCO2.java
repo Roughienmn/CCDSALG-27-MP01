@@ -1,16 +1,6 @@
 import java.util.Scanner;
 
 public class MCO2 {
-
-    static int hashFunction1(String key){
-        
-        return -1;
-    }
-
-    static int hashFunction2(String key){
-        return -1;
-    }
-
     /* 
      * Notes:
      * Hash table class already exists in java;
@@ -21,11 +11,11 @@ public class MCO2 {
         Scanner input = new Scanner(System.in);
 
         //get sequence
-        System.out.println("Input DNA Sequence: ");
+        System.out.print("Input DNA Sequence: ");
         String sequence = input.nextLine();
         
         //get substring length
-        System.out.println("Input k-mer length: ");
+        System.out.print("Input k-mer length: ");
         int k = input.nextInt(); 
         input.close();
 
@@ -39,14 +29,17 @@ public class MCO2 {
         for(int i = 0; i < subcount; i++){
             //get substring
             String subString = sequence.substring(i, i+k);
-
             boolean found = false;
-
+            System.out.println(subString);
+            int offset = 0;
+            
             //repeat hashfunction until hash table slot is free or key is found
             while(!found){
 
                 //get index of substring based on hashing function
-                int index = hashFunction1(subString);
+                int index;
+                index = 15 + offset; //insert hashing function here
+                System.out.println(index + "d");
 
                 //if substring is not in hash table yet, add it to appropriate index and increment count
                 if(hashtable[index] == null) {
@@ -61,7 +54,9 @@ public class MCO2 {
                 }
 
                 //if neither, update case for hashing function
-                else; 
+                else{
+                    offset++;
+                }
             }
         }
 
