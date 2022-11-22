@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hashing;
+import java.nio.charset.StandardCharsets;
+
 public class MCO2 {
     /* 
      * Notes:
@@ -24,6 +28,7 @@ public class MCO2 {
         int subcount = n - k + 1; //number of substrings of length k from string of length n
 
         Cell hashtable[] = new Cell[n]; //declare hash table
+        HashFunction hf = Hashing.murmur3_128();
 
         //add substrings to hash table, including counts
         for(int i = 0; i < subcount; i++){
@@ -38,7 +43,10 @@ public class MCO2 {
 
                 //get index of substring based on hashing function
                 int index;
-                index = 15 + offset; //insert hashing function here
+                index = (hf.hashString(subString, StandardCharsets.UTF_8).hashCode() + offset) % n; //insert hashing function here
+                if(index < 0){ //if index is negative, set index as n - |index|
+                    index = n+index;
+                }
                 System.out.println(index + "d");
 
                 //if substring is not in hash table yet, add it to appropriate index and increment count
@@ -48,7 +56,7 @@ public class MCO2 {
                 }
 
                 //if exists and is the same key, increment count (existing in hash table implies that collision occurs)
-                else if(hashtable[index].getName() == subString){
+                else if(hashtable[index].getName().equals(subString)){
                     hashtable[index].addCount();
                     found = true;
                 }
