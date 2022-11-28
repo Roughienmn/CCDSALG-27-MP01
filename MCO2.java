@@ -43,7 +43,6 @@ public class MCO2 {
             //get substring
             String subString = sequence.substring(i, i+k);
             boolean found = false;
-            System.out.println(subString);
             int offset = 0;
             
             //repeat hashfunction until hash table slot is free or key is found
@@ -55,7 +54,6 @@ public class MCO2 {
                 if(index < 0){ //if index is negative, set index as n - |index|
                     index = n+index;
                 }
-                System.out.println(index + "d");
 
                 //if substring is not in hash table yet, add it to appropriate index and increment count
                 if(hashtable[index] == null) {

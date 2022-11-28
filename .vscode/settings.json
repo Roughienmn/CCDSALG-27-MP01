@@ -1,6 +1,8 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "c:\\Users\\Rafael Gamboa\\Downloads\\guava-18.0 (1).jar"
+        "c:\\Users\\Rafael Gamboa\\Downloads\\guava-18.0 (1).jar",
+        "guava-31.1-jre.jar",
+        "guava-gwt-31.1-jre.jar"
     ]
 }
