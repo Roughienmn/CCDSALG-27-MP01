@@ -52,28 +52,6 @@ public class BST {
             this.root = iKey;
             this.substrings.add(iKey);
         } else {
-            /*if (search(iKey.getsDNA())){
-                int count = search(iKey.getsDNA());
-                iKey.setOccurrences(count+1);
-            } else if (!search(iKey.getsDNA())) {
-                while (compare != null){
-                    hold = compare;
-                    if (compare.getsDNA().compareTo(substring) > 0){
-                        compare = compare.getlNode();
-                    } else if (compare.getsDNA().compareTo(substring) < 0) {
-                        compare = compare.getrNode();
-                    }
-                }
-
-                if (hold.getsDNA().compareTo(substring) > 0){
-                    hold.setlNode(iKey);
-                } else if (hold.getsDNA().compareTo(substring) < 0) {
-                    hold.setrNode(iKey);
-                }
-
-                this.substrings.add(iKey);
-            }*/
-
             if (!search(iKey.getsDNA())) {
                 while (compare != null){
                     hold = compare;
