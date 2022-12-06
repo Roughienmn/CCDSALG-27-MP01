@@ -78,7 +78,8 @@ public class MCO2 {
         long start = System.nanoTime();
         int m = sequence.length(); // Length of the sequence
         int n = m - k + 1; // Number of substrings of length k from string of length m
-        int collisions = 0; 
+        int diffcollisions = 0;
+        int samecollisions = 0; 
 
         // Declaring hash table:
         Cell[] hashtable = new Cell[m];
@@ -119,18 +120,19 @@ public class MCO2 {
                 {
                     hashtable[index].addCount();
                     found = true;
-                    collisions++;
+                    samecollisions++;
                 }
                 // If neither, update case for hashing function (linear probing):
                 else{
                     offset++;
-                    collisions++;
+                    diffcollisions++;
                 }
             }
         }
 
         // Displaying k-mer distribution:
-        System.out.println("Collisions: " + collisions);
+        System.out.println("Differing Substring Collisions: " + diffcollisions);
+        System.out.println("Same Substring Collisions: " + samecollisions);
         System.out.println("Displaying " + k + "-mer distribution");
         System.out.println(k + "-mer (count)");
         for(Cell c : hashtable)
