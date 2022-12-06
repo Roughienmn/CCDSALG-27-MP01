@@ -122,9 +122,10 @@ public class MCO2 {
                     collisions++;
                 }
                 // If neither, update case for hashing function (linear probing):
-                else
+                else{
                     offset++;
                     collisions++;
+                }
             }
         }
 
